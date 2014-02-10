@@ -1,0 +1,71 @@
+var fs = require('fs')
+var Backbone = require('backbone')
+var _ = require('underscore')
+var express = require('express')
+var server = express()
+
+server.get('/*', function(req, res){
+
+  var ev = new Backbone.Model()
+  var history
+  var updates
+
+  ev.on('0', function() {
+    fs.readFile('./data/history.json','utf8', function(err, data) {
+      if (err) {
+        // no history yet, just create a blank history
+        history = []
+      }
+      else {
+        history = JSON.parse(data)
+      }
+      ev.trigger('1')
+    })
+  })
+
+  ev.on('1', function() {
+    fs.readFile('./data/updates.json','utf8', function(err, data) {
+      if (err) throw err
+      updates = JSON.parse(data)
+      ev.trigger('2')
+    })
+  })
+
+  ev.on('2', function() {
+    
+    var todo = _.difference(_.keys(updates), history)
+    console.log(todo)
+    if (todo.length < 1) {
+      // nothing todo
+      ev.trigger('3')
+    }
+    else {
+      var i = 0
+      // recursively run updates 
+      function process(callback) {
+        if(i == todo.length) {
+          // we're all done
+          ev.trigger('3')
+        }
+        else {
+          var update = require('./updates/' + updates[todo[i]].script)
+          update(function() {
+            i++
+            process()
+          })
+        }
+      }
+      process()
+    }           
+  })
+  
+  ev.on('3', function() {
+    fs.writeFile("./data/history.json", JSON.stringify(_.keys(updates)), function(err) {
+      console.log('done \n')       
+    })
+  })
+
+  ev.trigger('0')
+})
+
+server.listen(124);

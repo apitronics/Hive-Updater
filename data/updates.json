@@ -1,0 +1,18 @@
+{
+  "1": {
+    "description": "First update.",
+    "script": "1"
+  },
+  "2": {
+    "description": "Second update.",
+    "script": "2"
+  },
+  "3": {
+    "description": "Third update.",
+    "script": "3"
+  },
+  "4": {
+    "description": "Fourth update.",
+    "script": "4"
+  }
+}
