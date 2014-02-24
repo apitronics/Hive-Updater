@@ -1,4 +1,5 @@
 var fs = require('fs')
+var log = require('./lib/log.js')
 var Backbone = require('backbone')
 var _ = require('underscore')
 var express = require('express')
@@ -10,6 +11,7 @@ server.get('/*', function(req, res){
   var history
   var updates
 
+  // Get the history file
   ev.on('0', function() {
     fs.readFile('./data/history.json','utf8', function(err, data) {
       if (err) {
@@ -23,6 +25,7 @@ server.get('/*', function(req, res){
     })
   })
 
+  // Get the updates file
   ev.on('1', function() {
     fs.readFile('./data/updates.json','utf8', function(err, data) {
       if (err) throw err
@@ -31,8 +34,8 @@ server.get('/*', function(req, res){
     })
   })
 
+  // Compile a list of todo's, require them in, and run them sequentially
   ev.on('2', function() {
-    
     var todo = _.difference(_.keys(updates), history)
     console.log(todo)
     if (todo.length < 1) {
@@ -59,6 +62,7 @@ server.get('/*', function(req, res){
     }           
   })
   
+  // Write out what we've done into the history file
   ev.on('3', function() {
     fs.writeFile("./data/history.json", JSON.stringify(_.keys(updates)), function(err) {
       console.log('done \n')       
