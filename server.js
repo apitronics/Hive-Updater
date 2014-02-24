@@ -66,6 +66,7 @@ server.get('/*', function(req, res){
   ev.on('3', function() {
     fs.writeFile("./data/history.json", JSON.stringify(_.keys(updates)), function(err) {
       console.log('done \n')       
+      res.send('ok')
     })
   })
 
