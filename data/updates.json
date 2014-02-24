@@ -14,5 +14,10 @@
   "4": {
     "description": "Fourth update.",
     "script": "4"
+  },
+  "5": {
+    "description": "Fifth update.",
+    "script": "5"
   }
+
 }
