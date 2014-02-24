@@ -1,0 +1,15 @@
+[Unit]
+Description=Ground Hive Updater Launcher
+After=couchdb.service openntpd.service systemd-remount-fs.service
+Requires=update-ground-hive-updater.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=15s
+ExecStart=/usr/local/bin/node /root/Ground-Hive-Updater/server.js
+
+[Install]
+WantedBy=multi-user.target
+
+
