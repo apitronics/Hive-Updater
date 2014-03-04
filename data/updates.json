@@ -18,6 +18,10 @@
   "5": {
     "description": "Fifth update.",
     "script": "5"
+  },
+  "6": {
+    "description": "tar ball test",
+    "script": "6"
   }
 
 }
