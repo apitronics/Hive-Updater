@@ -1,3 +1,4 @@
-o "running update script"
-cd ~/Ground-Hive-Updater/
+#!/bin/bash
+
+cd /root/.Hive-Updater/
 git pull
