@@ -7,7 +7,7 @@ Requires=update-hive-updater.service
 Type=simple
 Restart=always
 RestartSec=15s
-ExecStart=/usr/local/bin/node /root/Hive-Updater/server.js
+ExecStart=/bin/node /root/Hive-Updater/server.js
 
 [Install]
 WantedBy=multi-user.target
