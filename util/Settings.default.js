@@ -1,3 +1,3 @@
 module.exports = {
-  "path": "/root/Hive-Updater"
+  "path": "/root/.Hive-Updater"
 }
