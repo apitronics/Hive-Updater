@@ -1,9 +1,11 @@
+var Settings = require('./Settings.js')
 var fs = require('fs')
 var log = require('./lib/log.js')
 var Backbone = require('backbone')
 var _ = require('underscore')
 var express = require('express')
 var server = express()
+
 
 server.get('/*', function(req, res){
 
@@ -13,7 +15,7 @@ server.get('/*', function(req, res){
 
   // Get the history file
   ev.on('0', function() {
-    fs.readFile('./data/history.json','utf8', function(err, data) {
+    fs.readFile(Settings.path + '/data/history.json','utf8', function(err, data) {
       if (err) {
         // no history yet, just create a blank history
         history = []
@@ -27,7 +29,7 @@ server.get('/*', function(req, res){
 
   // Get the updates file
   ev.on('1', function() {
-    fs.readFile('./data/updates.json','utf8', function(err, data) {
+    fs.readFile(Settings.path + '/data/updates.json','utf8', function(err, data) {
       if (err) throw err
       updates = JSON.parse(data)
       ev.trigger('2')
@@ -51,7 +53,7 @@ server.get('/*', function(req, res){
           ev.trigger('3')
         }
         else {
-          var update = require('./updates/' + updates[todo[i]].script)
+          var update = require(Settings.path + '/updates/' + updates[todo[i]].script)
           update(function() {
             i++
             process()
@@ -64,7 +66,7 @@ server.get('/*', function(req, res){
   
   // Write out what we've done into the history file
   ev.on('3', function() {
-    fs.writeFile("./data/history.json", JSON.stringify(_.keys(updates)), function(err) {
+    fs.writeFile(Settings.path + "/data/history.json", JSON.stringify(_.keys(updates)), function(err) {
       console.log('done \n')       
       res.send('ok')
     })
@@ -74,3 +76,4 @@ server.get('/*', function(req, res){
 })
 
 server.listen(124);
+console.log('Hive-Updater listening on port 124')
