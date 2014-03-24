@@ -1,6 +1,6 @@
 {
   "name": "GroundHiveUpdater",
-  "description": "",
+  "description": "// test # setup Run `npm install` to get dependencies listed in `package.json`. Run `./utils/install.sh` to get this thing updating on boot for systems with `systemd`.  Then create a `Settings.js` file based on `Settings.default.js`.",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -8,5 +8,26 @@
     "backbone": "1.1.0",
     "underscore": "1.5.2",
     "moment": "2.5.1"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "chai": "1.9.1", 
+    "fs-extra":"0.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apitronics/Hive-Updater.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apitronics/Hive-Updater/issues"
+  },
+  "homepage": "https://github.com/apitronics/Hive-Updater"
 }
