@@ -5,7 +5,8 @@ var Backbone = require('backbone')
 var _ = require('underscore')
 var express = require('express')
 var server = express()
-
+var findUpdatesToRun = require('./lib/FindUpdatesToRun.js')
+var tellHiveAboutUpdates = require('./lib/TellHiveAboutUpdates.js')
 
 server.get('/*', function(req, res){
 
@@ -115,3 +116,24 @@ setTimeout(function() {
   })
 
 }, 30000)
+
+
+/*
+ * Monitor available updates to let Hive know when they are available.
+ */
+
+var process = function() { 
+  log('process', 'Telling Hive about updates.')
+  findUpdatesToRun(function(err, updates) {
+    if (err) return log('FindUpdatesToRun', err)
+    tellHiveAboutUpdates(updates, function(err, response) {
+      if (err) return log('TellHiveAboutUpdates', err)
+      return log('process', 'Finished telling hive about updates.')
+    })
+  })
+}
+
+setTimeout(function() {
+  process()
+}, 5*60*1000)
+process()
