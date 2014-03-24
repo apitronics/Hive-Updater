@@ -1,31 +1,27 @@
-{
-  "1": {
+[
+  {
+    "version": "1.0.1",
     "description": "First update.",
     "script": "1.js"
   },
-  "2": {
-    "description": "Second update.",
+  {
+    "version": "1.0.2",
+    "description": "Second Update",
     "script": "2.js"
   },
-  "3": {
+  {
+    "version": "1.1.0",
     "description": "Third update.",
     "script": "3.js"
   },
-  "4": {
+  {
+    "version": "1.1.1",
     "description": "Fourth update.",
     "script": "4.js"
   },
-  "5": {
+  {
+    "version": "1.1.2",
     "description": "Fifth update.",
     "script": "5.js"
-  },
-  "6": {
-    "description": "tar ball test",
-    "script": "6.js"
-  },
-  "7": {
-    "description": "update with tar ball and npm install and Settings.js consideration.",
-    "script": "7.js"
   }
-
-}
+]

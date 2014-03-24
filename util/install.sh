@@ -1,4 +1,3 @@
 #!/bin/bash
-
-cp ./systemd/update-hive-updater.service /etc/systemd/system/multi-user.target.wants/
-cp ./systemd/hive-updater.service /etc/systemd/system/multi-user.target.wants/
+cp /root/.Hive-Updater/util/Settings.default.js /root/.Hive-Updater/Settings.js
+ln -s /root/.Hive-Updater/util//systemd/hive-updater.service /etc/systemd/system/multi-user.target.wants/
