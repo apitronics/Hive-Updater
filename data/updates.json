@@ -2,26 +2,6 @@
   {
     "version": "1.0.1",
     "description": "First update.",
-    "script": "1.js"
-  },
-  {
-    "version": "1.0.2",
-    "description": "Second Update",
-    "script": "2.js"
-  },
-  {
-    "version": "1.1.0",
-    "description": "Third update.",
-    "script": "3.js"
-  },
-  {
-    "version": "1.1.1",
-    "description": "Fourth update.",
-    "script": "4.js"
-  },
-  {
-    "version": "1.1.2",
-    "description": "Fifth update.",
-    "script": "5.js"
+    "script": "1_0_1.js"
   }
 ]

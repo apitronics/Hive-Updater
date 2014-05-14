@@ -47,7 +47,7 @@ server.get('/*', function(req, res){
     }
     else {
       var i = 0
-      // recursively run updates 
+      // recursively run updates
       function process(callback) {
         if(i == todo.length) {
           // we're all done
@@ -62,14 +62,15 @@ server.get('/*', function(req, res){
         }
       }
       process()
-    }           
+    }
   })
-  
+
   // Write out what we've done into the history file
   ev.on('3', function() {
     fs.writeFile(Settings.path + "/data/history.json", JSON.stringify(_.keys(updates)), function(err) {
-      console.log('done \n')       
-      res.send('ok')
+      console.log('done \n');
+      res.redirect(Settings.redirectUrl);
+      process();
     })
   })
 
@@ -81,7 +82,7 @@ console.log('Hive-Updater listening on port 124')
 
 
 setTimeout(function() {
- 
+
   var ev = new Backbone.Model()
   var history
   var updates
@@ -122,7 +123,7 @@ setTimeout(function() {
  * Monitor available updates to let Hive know when they are available.
  */
 
-var process = function() { 
+var process = function() {
   log('process', 'Telling Hive about updates.')
   findUpdatesToRun(function(err, updates) {
     if (err) return log('FindUpdatesToRun', err)
@@ -136,4 +137,5 @@ var process = function() {
 setTimeout(function() {
   process()
 }, 5*60*1000)
+
 process()
