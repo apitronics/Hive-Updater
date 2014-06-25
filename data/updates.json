@@ -3,5 +3,10 @@
     "version": "1.0.1",
     "description": "First update.",
     "script": "1_0_1.js"
+  },
+  {
+    "version": "1.0.2",
+    "description": "Install setuptools and pytz.",
+    "script": "1_0_2.js"
   }
 ]
