@@ -10,9 +10,14 @@ var tellHiveAboutUpdates = require('./lib/TellHiveAboutUpdates.js')
 
 server.get('/*', function(req, res){
 
-  var ev = new Backbone.Model()
-  var history
-  var updates
+  var ev = new Backbone.Model(),
+           history,
+           updates,
+           result = res;
+
+  setInterval(function(){
+    result.write('Updating...\n');
+  }, 10000);
 
   // Get the history file
   ev.on('0', function() {
@@ -69,7 +74,8 @@ server.get('/*', function(req, res){
   ev.on('3', function() {
     fs.writeFile(Settings.path + "/data/history.json", JSON.stringify(_.keys(updates)), function(err) {
       console.log('done \n');
-      res.redirect(Settings.redirectUrl);
+      res.write('Done.');
+      res.end();
       process();
     })
   })
@@ -77,6 +83,7 @@ server.get('/*', function(req, res){
   ev.trigger('0')
 })
 
+server.use(express.timeout(30 * 60 * 1000)); // 30 min timeout
 server.listen(124);
 console.log('Hive-Updater listening on port 124')
 
