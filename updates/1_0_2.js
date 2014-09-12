@@ -34,7 +34,7 @@ module.exports = function(callback) {
 
   console.log("updating cron jobs\n");
   cmd += 'systemctl stop cronie && ';
-  cmd += 'rm /var/spool/cron/root && ';
+  cmd += 'rm -f /var/spool/cron/root && ';
   cmd += 'crontab /root/Hive/util/var/spool/cron/root && ';
   cmd += 'systemctl start cronie';
 
