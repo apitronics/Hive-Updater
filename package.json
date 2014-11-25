@@ -1,14 +1,18 @@
 {
-  "name": "GroundHiveUpdater",
+  "name": "HiveUpdater",
   "description": "// test # setup Run `npm install` to get dependencies listed in `package.json`. Run `./utils/install.sh` to get this thing updating on boot for systems with `systemd`.  Then create a `Settings.js` file based on `Settings.default.js`.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "backbone": "1.1.0",
-    "express": "3.4.2",
+    "connect-timeout": "1.4.0",
+    "cors": "2.5.2",
+    "express": "4.10.3",
     "moment": "2.5.1",
-    "nano": "5.7.1",
-    "underscore": "1.5.2"
+    "nano": "6.0.1",
+    "request-json": "0.5.0",
+    "underscore": "1.7.0",
+    "underscore.string": "2.4.0"
   },
   "scripts": {
     "start": "node server.js"
